@@ -33,7 +33,7 @@ public class ConstructionMockHandler implements AnnotationHandler {
     }
 
     private Object mockConstruction(Class<?> mockType, Optional<Class<?>> maybeTestClass, Optional<Method> maybeTestMethod, Optional<Object> testInstance) {
-        return maybeTestClass.flatMap(testClass -> maybeTestMethod.flatMap(testMethod -> ReflectionSupport.findMethod(testClass, testMethod.getName(), Context.class)))
+        return maybeTestClass.flatMap(testClass -> maybeTestMethod.flatMap(testMethod -> ReflectionSupport.findMethod(testClass, testMethod.getName(), mockType, Context.class)))
             .<Object>map(method -> Mockito.mockConstruction(mockType, (mock, context) -> ReflectionSupport.invokeMethod(method, testInstance.get(), mock, context)))
             .orElseGet(() -> Mockito.mockConstruction(mockType));
     }
