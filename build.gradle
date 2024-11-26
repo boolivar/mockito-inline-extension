@@ -1,0 +1,41 @@
+plugins {
+    id "java-library"
+    id "io.github.boolivar.jdoctest.jdoc-spock" version "0.10.1"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+    withJavadocJar()
+    withSourcesJar()
+}
+
+tasks.named("compileJava") {
+    options.release = 8
+}
+
+tasks.named("test") {
+    useJUnitPlatform()
+}
+
+tasks.named("check") {
+    dependsOn "jdocSpockTest"
+}
+
+tasks.named("javadoc") {
+    options.addBooleanOption("Xdoclint:none", true)
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform("org.junit:junit-bom:5.11.3")
+    implementation "org.junit.jupiter:junit-jupiter-api"
+    implementation "org.mockito:mockito-core:5.14.2"
+
+    testImplementation "org.junit.jupiter:junit-jupiter"
+    testImplementation "org.apache.groovy:groovy:4.0.24"
+}
