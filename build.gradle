@@ -36,6 +36,7 @@ dependencies {
     implementation "org.junit.jupiter:junit-jupiter-api"
     implementation "org.mockito:mockito-core:5.14.2"
 
-    testImplementation "org.junit.jupiter:junit-jupiter"
     testImplementation "org.apache.groovy:groovy:4.0.24"
+    testImplementation "org.assertj:assertj-core:3.26.3"
+    testImplementation "org.junit.jupiter:junit-jupiter"
 }
