@@ -1,6 +1,7 @@
 plugins {
     id "java-library"
     id "io.github.boolivar.jdoctest.jdoc-spock" version "0.10.1"
+    id "org.sonarqube" version "6.0.0.5145"
 }
 
 java {
@@ -17,14 +18,34 @@ tasks.named("compileJava") {
 
 tasks.named("test") {
     useJUnitPlatform()
+    finalizedBy "jacocoTestReport"
+}
+
+tasks.named("jacocoTestReport") {
+    reports {
+        xml.required = true
+    }
 }
 
 tasks.named("check") {
     dependsOn "jdocSpockTest"
 }
 
+tasks.named("jar") {
+    dependsOn "check"
+}
+
 tasks.named("javadoc") {
     options.addBooleanOption("Xdoclint:none", true)
+}
+
+
+sonar {
+    properties {
+        property "sonar.projectKey", "boolivar_mockito-inline-extension"
+        property "sonar.organization", "boolivar"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
 }
 
 repositories {
