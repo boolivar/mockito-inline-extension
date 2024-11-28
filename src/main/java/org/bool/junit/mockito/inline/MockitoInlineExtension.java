@@ -1,5 +1,9 @@
 package org.bool.junit.mockito.inline;
 
+import org.bool.junit.mockito.inline.impl.AnnotationHandler;
+import org.bool.junit.mockito.inline.impl.ConstructionMockHandler;
+import org.bool.junit.mockito.inline.impl.StaticMockHandler;
+
 import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ExtensionContext.Namespace;

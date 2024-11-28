@@ -1,4 +1,4 @@
-package org.bool.junit.mockito.inline;
+package org.bool.junit.mockito.inline.impl;
 
 import org.junit.jupiter.api.extension.ExtensionContext.Store;
 

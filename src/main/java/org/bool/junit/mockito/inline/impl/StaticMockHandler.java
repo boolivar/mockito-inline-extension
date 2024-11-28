@@ -1,4 +1,6 @@
-package org.bool.junit.mockito.inline;
+package org.bool.junit.mockito.inline.impl;
+
+import org.bool.junit.mockito.inline.StaticMock;
 
 import org.junit.jupiter.api.extension.ExtensionContext.Store;
 import org.junit.platform.commons.support.AnnotationSupport;
