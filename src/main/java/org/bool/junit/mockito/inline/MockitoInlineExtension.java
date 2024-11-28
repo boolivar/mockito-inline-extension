@@ -14,6 +14,15 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * This extension provides
+ * {@link org.mockito.Mockito#mockConstruction(Class) Mockito.mockConstruction}
+ * and {@link org.mockito.Mockito#mockStatic(Class) Mockito.mockStatic}
+ * by {@link ConstructionMock} and {@link StaticMock} annotations.
+ * 
+ * @see ConstructionMock
+ * @see StaticMock
+ */
 public class MockitoInlineExtension implements ParameterResolver, BeforeTestExecutionCallback {
 
     private final Namespace namespace = Namespace.create(MockitoInlineExtension.class);
