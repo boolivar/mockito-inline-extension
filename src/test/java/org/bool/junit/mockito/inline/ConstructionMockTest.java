@@ -41,13 +41,28 @@ class ConstructionMockTest {
             .thenReturn("mock");
     }
 
+    @ConstructionMock({TestClass.class, AnotherTestClass.class})
+    @Test
+    void testMultipleMocks(MockedConstruction<TestClass> mocked, MockedConstruction<AnotherTestClass> anotherMocked) {
+        var mock = new TestClass();
+        var anotherMock = new AnotherTestClass();
+        assertThat(mocked.constructed())
+            .singleElement().isSameAs(mock);
+        assertThat(anotherMocked.constructed())
+            .singleElement().isSameAs(anotherMock);
+    }
+
     @Nested
     class MocksReleasedTest {
 
         @Test
         void testConstructionMockReleased() {
-            assertThat(mockingDetails(new TestClass()))
-                .returns(false, MockingDetails::isMock);
+            assertThat(new TestClass())
+                .returns("test", TestClass::test)
+                .returns(false, o -> mockingDetails(o).isMock());
+            assertThat(new AnotherTestClass())
+                .returns("test", AnotherTestClass::test)
+                .returns(false, o -> mockingDetails(o).isMock());
         }
     }
 }
