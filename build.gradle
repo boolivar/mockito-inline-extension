@@ -2,12 +2,14 @@ plugins {
     id "java-library"
     id "jacoco"
     id "io.github.boolivar.jdoctest.jdoc-spock" version "0.10.1"
+    id "io.github.boolivar.sonatype-portal-publish" version "0.1.0"
     id "org.sonarqube" version "6.0.0.5145"
     id "pl.allegro.tech.build.axion-release" version "1.18.16"
 }
 
 group = "io.github.boolivar"
 version = scmVersion.version
+description = "JUnit Extension to simplify Mockito static and constructor mocking"
 
 java {
     toolchain {
@@ -34,6 +36,10 @@ sonar {
         property "sonar.organization", "boolivar"
         property "sonar.host.url", "https://sonarcloud.io"
     }
+}
+
+sonatypePublish {
+    autoPublish = mavenCentralAutoPublish.toBoolean()
 }
 
 tasks.named("compileJava") {
@@ -67,12 +73,62 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    internalPlatform {
+        visible = false
+    }
+    [compileClasspath, runtimeClasspath, testCompileClasspath, testRuntimeClasspath].each {
+        it.extendsFrom internalPlatform
+    }
+}
+
 dependencies {
-    implementation platform("org.junit:junit-bom:5.11.3")
-    implementation "org.junit.jupiter:junit-jupiter-api"
-    implementation "org.mockito:mockito-core:5.14.2"
+    internalPlatform platform("org.junit:junit-bom:5.11.3")
+
+    api "org.junit.jupiter:junit-jupiter-api"
+    api "org.mockito:mockito-core:5.14.2"
 
     testImplementation "org.apache.groovy:groovy:4.0.24"
     testImplementation "org.assertj:assertj-core:3.26.3"
     testImplementation "org.junit.jupiter:junit-jupiter"
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            versionMapping {
+                allVariants {
+                    fromResolutionResult()
+                }
+            }
+            afterEvaluate {
+                pom {
+                    name = "$groupId:$artifactId"
+                    description = project.description
+                    url = "https://github.com/boolivar/mockito-inline-extension"
+                    inceptionYear = "2024"
+                    licenses {
+                        license {
+                            name = "MIT License"
+                            url = "https://raw.githubusercontent.com/boolivar/mockito-inline-extension/$version/LICENSE"
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = "boolivar"
+                            name = "Aleksey Krichevskiy"
+                            email = "boolivar@gmail.com"
+                            organizationUrl = "https://github.com/boolivar"
+                        }
+                    }
+                    scm {
+                        connection = "scm:git:https://github.com/boolivar/mockito-inline-extension.git"
+                        developerConnection = "scm:git:ssh://github.com:boolivar/mockito-inline-extension.git"
+                        url = "https://github.com/boolivar/mockito-inline-extension"
+                    }
+                }
+            }
+        }
+    }
 }
