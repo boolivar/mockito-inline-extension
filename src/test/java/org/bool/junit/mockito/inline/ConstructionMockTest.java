@@ -46,10 +46,24 @@ class ConstructionMockTest {
     void testMultipleMocks(MockedConstruction<TestClass> mocked, MockedConstruction<AnotherTestClass> anotherMocked) {
         var mock = new TestClass();
         var anotherMock = new AnotherTestClass();
+        assertThat(mock.test())
+            .isEqualTo("mock");
+        assertThat(anotherMock.test())
+            .isEqualTo("anotherMock");
         assertThat(mocked.constructed())
             .singleElement().isSameAs(mock);
         assertThat(anotherMocked.constructed())
             .singleElement().isSameAs(anotherMock);
+    }
+
+    void testMultipleMocks(TestClass mock, Context context) {
+        when(mock.test())
+            .thenReturn("mock");
+    }
+
+    void testMultipleMocks(AnotherTestClass mock, Context context) {
+        when(mock.test())
+            .thenReturn("anotherMock");
     }
 
     @Nested
