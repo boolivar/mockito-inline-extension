@@ -53,4 +53,4 @@ jobs:
         ORG_GRADLE_PROJECT_sonatypeSigningSecret: ${{ secrets.GPG_SECRET }}
         ORG_GRADLE_PROJECT_sonatypeMavenCentralUser: ${{ secrets.SONATYPE_USER }}
         ORG_GRADLE_PROJECT_sonatypeMavenCentralPassword: ${{ secrets.SONATYPE_PASSWORD }}
-      run: ./gradlew -Prelease.forceVersion=$RELEASE_VERSION createRelease && ./gradlew -x check publishToSonatype
+      run: ./gradlew -Prelease.forceVersion=$RELEASE_VERSION createRelease && ./gradlew -x check -PmavenCentralAutoPublish=true publishToSonatype
