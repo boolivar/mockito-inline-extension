@@ -2,7 +2,7 @@ mockito-inline-extension
 ---
 <!-- x-release-please-start-version -->
 [![CI](https://github.com/boolivar/mockito-inline-extension/workflows/CI/badge.svg)](https://github.com/boolivar/mockito-inline-extension/actions/workflows/ci.yml)
-[![license](https://img.shields.io/badge/license-MIT-green)](https://github.com/boolivar/mockito-inline-extension/blob/0.0.0/LICENSE)
+[![license](https://img.shields.io/badge/license-MIT-green)](https://github.com/boolivar/mockito-inline-extension/blob/1.0.0/LICENSE)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.boolivar/mockito-inline-extension)](https://central.sonatype.com/artifact/io.github.boolivar/mockito-inline-extension)
 <!-- x-release-please-end -->
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=boolivar_mockito-inline-extension&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=boolivar_mockito-inline-extension)
@@ -18,14 +18,14 @@ JUnit jupiter extension for Mockito construction and static mocking.
 <dependency>
     <groupId>io.github.boolivar</groupId>
     <artifactId>mockito-inline-extension</artifactId>
-    <version>0.0.0</version>
+    <version>1.0.0</version>
     <scope>test</scope>
 </dependency>
 ```
 <!-- x-release-please-end -->
 <!-- x-release-please-start-version -->
 ```gradle
-testImplementation "io.github.boolivar:mockito-inline-extension:0.0.0"
+testImplementation "io.github.boolivar:mockito-inline-extension:1.0.0"
 ```
 <!-- x-release-please-end -->
 
