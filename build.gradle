@@ -7,10 +7,6 @@ plugins {
     id "pl.allegro.tech.build.axion-release" version "1.18.16"
 }
 
-group = "io.github.boolivar"
-version = scmVersion.version
-description = "JUnit Extension to simplify Mockito static and constructor mocking"
-
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
@@ -29,6 +25,10 @@ scmVersion {
         ".*": "versionWithBranch"
     ]
 }
+
+group = "io.github.boolivar"
+version = scmVersion.version
+description = "JUnit Extension to simplify Mockito static and constructor mocking"
 
 sonar {
     properties {
