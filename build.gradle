@@ -89,7 +89,7 @@ dependencies {
     api "org.mockito:mockito-core:5.14.2"
 
     testImplementation "org.apache.groovy:groovy:4.0.24"
-    testImplementation "org.assertj:assertj-core:3.26.3"
+    testImplementation "org.assertj:assertj-core:3.27.0"
     testImplementation "org.junit.jupiter:junit-jupiter"
 }
 
