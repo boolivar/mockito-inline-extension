@@ -88,7 +88,7 @@ dependencies {
     api "org.junit.jupiter:junit-jupiter-api"
     api "org.mockito:mockito-core:5.15.2"
 
-    testImplementation "org.apache.groovy:groovy:4.0.24"
+    testImplementation "org.apache.groovy:groovy:4.0.25"
     testImplementation "org.assertj:assertj-core:3.27.3"
     testImplementation "org.junit.jupiter:junit-jupiter"
 }
