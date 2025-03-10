@@ -91,6 +91,8 @@ dependencies {
     testImplementation "org.apache.groovy:groovy:4.0.26"
     testImplementation "org.assertj:assertj-core:3.27.3"
     testImplementation "org.junit.jupiter:junit-jupiter"
+
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
 }
 
 publishing {
