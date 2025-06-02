@@ -83,7 +83,7 @@ configurations {
 }
 
 dependencies {
-    internalPlatform platform("org.junit:junit-bom:5.12.1")
+    internalPlatform platform("org.junit:junit-bom:5.13.0")
 
     api "org.junit.jupiter:junit-jupiter-api"
     api "org.mockito:mockito-core:5.16.0"
