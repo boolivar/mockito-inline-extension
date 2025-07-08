@@ -22,6 +22,7 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
     - name: Cache SonarCloud packages
+      if: ${{ !startsWith(github.ref_name, 'dependabot/') }}
       uses: actions/cache@v4
       with:
         path: ~/.sonar/cache
@@ -29,9 +30,8 @@ jobs:
         restore-keys: ${{ runner.os }}-sonar
     - name: Run Gradle checks
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: ./gradlew check sonar
+      run: ./gradlew ${{ startsWith(github.ref_name, 'dependabot/') && 'check' || 'check sonar' }}
     - name: Upload test reports
       if: ${{ !cancelled() }}
       uses: actions/upload-artifact@v4
