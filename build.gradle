@@ -86,7 +86,7 @@ dependencies {
     internalPlatform platform("org.junit:junit-bom:5.13.4")
 
     api "org.junit.jupiter:junit-jupiter-api"
-    api "org.mockito:mockito-core:5.20.0"
+    api "org.mockito:mockito-core:5.21.0"
 
     testImplementation "org.apache.groovy:groovy:4.0.29"
     testImplementation "org.assertj:assertj-core:3.27.6"
